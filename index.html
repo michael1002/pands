@@ -15,21 +15,24 @@
   <!-- Navbar -->
 
   <div class="w-full text-gray-100 bg-ps-blue dark-mode:text-gray-200 dark-mode:bg-gray-800">
-    <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+    <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto lg:items-center lg:justify-between lg:flex-row lg:px-8">
       <div class="p-4 flex flex-row items-center justify-between">
-        <a href="#" class="text-lg font-semibold tracking-widest text-gray-100 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">P&S Fahrzeugtechnik</a>
-        <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+        <a href="#" class="text-lg font-semibold tracking-widest text-gray-100 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+          <img src="./assets/Logo.jpeg" alt="Firmenlogo" class="h-20">
+        </a>
+        <button class="lg:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
           <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
             <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
             <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
           </svg>
         </button>
       </div>
-      <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+      <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 lg:pb-0 hidden lg:flex lg:justify-end lg:flex-row">
+        <!-- <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#start">Start</a> -->
         <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#firma">Firma</a>
-        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#anfahrt">Anfahrt</a>
-        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#about">Über uns</a>
-        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#contact">Kontakt</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#ueber-uns">Über uns</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#leistungen">Leistungen</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#kontakt">Kontakt</a>
         <!-- <div @click.away="open = false" class="relative" x-data="{ open: false }">
           <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
             <span>Dropdown</span>
@@ -51,20 +54,19 @@
 
   <!-- Hero -->
 
-  <header class="h-640 z-10">
+  <header class="h-640 z-10" id="start">
     <div class="w-full relative bg-center bg-cover bg-[url('./assets/FirmaVorderseite.jpeg')]">
-      <div class="flex items-center justify-center w-full h-640 bg-gray-900 bg-opacity-50 py-12">
+      <div class="flex items-center justify-center w-full h-640 bg-gray-900 bg-opacity-80 py-12">
         <div class="text-center">
           <div class="container px-4 mx-auto">
             <div class="max-w-4xl mx-auto text-center">
               <span class="text-gray-200 font-semibold uppercase tracking-widest">P&S Fahrzeugtechnik</span>
               <h2 class="mt-8 mb-6 text-4xl lg:text-5xl font-bold text-gray-100">Ihre Autowerkstatt.</h2>
               <p class="max-w-3xl mx-auto mb-10 text-lg text-gray-300">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum sit cum iure qui, nostrum at sapiente
-                ducimus.
+                Ihre kompetente KFZ-Meisterwerkstatt für alle Marken
               </p>
               <a class="inline-block w-8/12 md:w-auto mb-4 md:mr-6 py-5 px-8 text-sm font-bold uppercase border-2 border-transparent bg-gray-200 rounded hover:bg-gray-100 text-gray-800 transition duration-200"
-                href="#">Termin vereinbaren</a>
+                href="#kontakt">Termin vereinbaren</a>
             </div>
           </div>
         </div>
@@ -77,44 +79,44 @@
   <!-- Dienstleistungen -->
   <div class="bg-gray-100">
   <div class="xl:flex hidden lg:flex-row mx-20 justify-around -mt-32">
-    <div id="service" class="bg-ps-blue text-white scale-100 h-96 w-72 rounded-lg z-20 block object-center transform transition-all duration-500 ease-out">
+    <div id="service" class="bg-ps-blue pt-10 text-white scale-100 h-96 w-72 rounded-lg z-20 block object-center transform transition-all duration-500 ease-out">
       <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
       <h2 class="text-center text-2xl mt-4">Reifenwechsel</h2>
       <p class="text-sm m-6">Sicherheit auf der Straße: Jetzt Reifen wechseln lassen! Zuverlässiger Service,
         schnell
         erledigt. Termin
         vereinbaren und beruhigt fahren!</p>
-      <section class="text-center">
+      <!-- <section class="text-center">
         <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
-      </section>
+      </section> -->
     </div>
-    <div id="service-1" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+    <div id="service-1" class="bg-ps-blue pt-10 text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
       <img src="./assets/icons8-car-crash-100.png" alt="car icon" class="mx-auto mt-7">
       <h2 class="text-center text-2xl mt-4">Reparatur</h2>
       <p class="text-sm m-6">Ihr Auto braucht eine Reparatur? Vertrauen Sie unseren Experten!
         Zuverlässiger Service,
         faire Preise. Termin vereinbaren und wieder sicher fahren!</p>
-        <section class="text-center">
+        <!-- <section class="text-center">
           <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
-        </section>
+        </section> -->
     </div>
-    <div id="service-2" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+    <div id="service-2" class="bg-ps-blue pt-10 text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
       <img src="./assets/icons8-autovermietung-100.png" alt="car icon" class="mx-auto mt-7">
       <h2 class="text-center text-2xl mt-4">TÜV</h2>
       <p class="text-sm m-6">Ist Ihr Auto TÜV-fällig? Kein Problem! Wir erledigen das schnell und zuverlässig. Termin
         vereinbaren und beruhigt fahren!</p>
-        <section class="text-center">
+        <!-- <section class="text-center">
           <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
-        </section>
+        </section> -->
     </div>
-    <div id="service-3" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+    <div id="service-3" class="bg-ps-blue pt-10 text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
       <img src="./assets/icons8-auto-service-100.png" alt="car icon" class="mx-auto mt-7">
       <h2 class="text-center text-2xl mt-4">Kundendienst</h2>
       <p class="text-sm m-6">Gönnen Sie Ihrem Auto einen Kundendienst! Unsere Experten sorgen für beste Betreuung.
         Termin vereinbaren und sorgenfrei fahren!</p>
-        <section class="text-center">
+        <!-- <section class="text-center">
           <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
-        </section>
+        </section> -->
     </div>
   </div>
   </div>
@@ -181,9 +183,9 @@
                                         <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                                     </svg>
                                 </span>
-                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">3,590
+                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">> 100
                                 </p>
-                                <h2 class="text-sm text-gray-700 dark:text-gray-400">Helped people</h2>
+                                <h2 class="text-sm text-gray-700 dark:text-gray-400">zufriedene Kunden</h2>
                             </div>
                         </div>
                         <div class="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
@@ -233,7 +235,7 @@
 
 
   <!-- Über uns -->
-  <section class="flex items-center bg-stone-100 font-poppins dark:bg-gray-800 py-20">
+  <section class="flex items-center bg-stone-100 font-poppins dark:bg-gray-800 py-20" id="ueber-uns">
     <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
         <div class="flex flex-wrap ">
             <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
@@ -321,7 +323,7 @@
 
 
   <!-- Dienstleistungen -->
-  <div class="bg-ps-blue flex flex-row flex-wrap py-10">
+  <div class="bg-ps-blue flex flex-row flex-wrap py-10" id="leistungen">
     <div class="justify-center flex-1 max-w-6xl xl:max-w-7xl md:mx-8 lg:mx-auto mx-6 py-4 lg:py-6 md:px-6">
       <div class="pl-4 mb-12 border-l-4 border-gray-300 ">
         <span class="text-sm text-gray-300 uppercase dark:text-gray-400">Was wir für sie tun</span>
@@ -447,7 +449,7 @@
 
 <!-- Kontakt -->
 
-<div class="bg-stone-100 w-screen flex flex-col py-10">
+<div class="bg-stone-100 w-screen flex flex-col py-10" id="kontakt">
   <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
     <div class="pl-4 border-l-4 border-ps-blue mb-10">
       <span class="text-sm text-gray-600 uppercase dark:text-gray-400">So erreichen Sie uns</span>
@@ -497,13 +499,13 @@
           <a href="#" class="hover:underline me-4 md:me-6">Start</a>
       </li>
       <li>
-          <a href="#" class="hover:underline me-4 md:me-6">Impressum</a>
+          <a href="./impressum.html" class="hover:underline me-4 md:me-6">Impressum</a>
       </li>
       <li>
-          <a href="#" class="hover:underline me-4 md:me-6">AGBs</a>
+          <a href="./agbs.html" class="hover:underline me-4 md:me-6">AGBs</a>
       </li>
       <li>
-          <a href="#" class="hover:underline">Kontakt</a>
+          <a href="#kontakt" class="hover:underline">Kontakt</a>
       </li>
   </ul>
   </div>
