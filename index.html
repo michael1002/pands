@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P&S Fahrzeugtechnik - Autowerkstatt</title>
+  <script type="module" src="/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<body class="h-screen">
+
+  <!-- Navbar -->
+
+  <div class="w-full text-gray-100 bg-ps-blue dark-mode:text-gray-200 dark-mode:bg-gray-800">
+    <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+      <div class="p-4 flex flex-row items-center justify-between">
+        <a href="#" class="text-lg font-semibold tracking-widest text-gray-100 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">P&S Fahrzeugtechnik</a>
+        <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+          <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+            <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+      <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+        <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#firma">Firma</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#anfahrt">Anfahrt</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#about">Über uns</a>
+        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#contact">Kontakt</a>
+        <!-- <div @click.away="open = false" class="relative" x-data="{ open: false }">
+          <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+            <span>Dropdown</span>
+            <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+          <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+            <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+              <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #1</a>
+              <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #2</a>
+              <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #3</a>
+            </div>
+          </div>
+        </div>     -->
+      </nav>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+
+  <!-- Hero -->
+
+  <header class="h-640 z-10">
+    <div class="w-full relative bg-center bg-cover bg-[url('./assets/FirmaVorderseite.jpeg')]">
+      <div class="flex items-center justify-center w-full h-640 bg-gray-900 bg-opacity-50 py-12">
+        <div class="text-center">
+          <div class="container px-4 mx-auto">
+            <div class="max-w-4xl mx-auto text-center">
+              <span class="text-gray-200 font-semibold uppercase tracking-widest">P&S Fahrzeugtechnik</span>
+              <h2 class="mt-8 mb-6 text-4xl lg:text-5xl font-bold text-gray-100">Ihre Autowerkstatt.</h2>
+              <p class="max-w-3xl mx-auto mb-10 text-lg text-gray-300">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum sit cum iure qui, nostrum at sapiente
+                ducimus.
+              </p>
+              <a class="inline-block w-8/12 md:w-auto mb-4 md:mr-6 py-5 px-8 text-sm font-bold uppercase border-2 border-transparent bg-gray-200 rounded hover:bg-gray-100 text-gray-800 transition duration-200"
+                href="#">Termin vereinbaren</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+
+  <!-- Dienstleistungen -->
+  <div class="bg-gray-100">
+  <div class="xl:flex hidden lg:flex-row mx-20 justify-around -mt-32">
+    <div id="service" class="bg-ps-blue text-white scale-100 h-96 w-72 rounded-lg z-20 block object-center transform transition-all duration-500 ease-out">
+      <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+      <h2 class="text-center text-2xl mt-4">Reifenwechsel</h2>
+      <p class="text-sm m-6">Sicherheit auf der Straße: Jetzt Reifen wechseln lassen! Zuverlässiger Service,
+        schnell
+        erledigt. Termin
+        vereinbaren und beruhigt fahren!</p>
+      <section class="text-center">
+        <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+      </section>
+    </div>
+    <div id="service-1" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+      <img src="./assets/icons8-car-crash-100.png" alt="car icon" class="mx-auto mt-7">
+      <h2 class="text-center text-2xl mt-4">Reparatur</h2>
+      <p class="text-sm m-6">Ihr Auto braucht eine Reparatur? Vertrauen Sie unseren Experten!
+        Zuverlässiger Service,
+        faire Preise. Termin vereinbaren und wieder sicher fahren!</p>
+        <section class="text-center">
+          <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+        </section>
+    </div>
+    <div id="service-2" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+      <img src="./assets/icons8-autovermietung-100.png" alt="car icon" class="mx-auto mt-7">
+      <h2 class="text-center text-2xl mt-4">TÜV</h2>
+      <p class="text-sm m-6">Ist Ihr Auto TÜV-fällig? Kein Problem! Wir erledigen das schnell und zuverlässig. Termin
+        vereinbaren und beruhigt fahren!</p>
+        <section class="text-center">
+          <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+        </section>
+    </div>
+    <div id="service-3" class="bg-ps-blue text-white h-96 w-72 rounded-lg z-10 block object-center transform transition-all duration-500 ease-out scale-100">
+      <img src="./assets/icons8-auto-service-100.png" alt="car icon" class="mx-auto mt-7">
+      <h2 class="text-center text-2xl mt-4">Kundendienst</h2>
+      <p class="text-sm m-6">Gönnen Sie Ihrem Auto einen Kundendienst! Unsere Experten sorgen für beste Betreuung.
+        Termin vereinbaren und sorgenfrei fahren!</p>
+        <section class="text-center">
+          <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+        </section>
+    </div>
+  </div>
+  </div>
+  <script>
+    window.onload = function () {
+      setTimeout(function startAnimation() {
+        document.getElementById('service').classList.remove('scale-0');
+        document.getElementById('service').classList.add('scale-100');
+        document.getElementById('service-1').classList.remove('scale-0');
+        document.getElementById('service-1').classList.add('scale-100');
+        document.getElementById('service-2').classList.remove('scale-0');
+        document.getElementById('service-2').classList.add('scale-100');
+        document.getElementById('service-3').classList.remove('scale-0');
+        document.getElementById('service-3').classList.add('scale-100');
+
+        setTimeout(startAnimation, 800)
+      }, 800)
+    }
+  </script>
+  <!-- Dienstleistungen -->
+
+  <!-- Über Firma -->
+  <div class="bg-stone-100 h-10"></div>
+  <section id="firma" class="py-10 lg:py-20 bg-stone-100 font-poppins dark:bg-gray-800">
+    <div class="max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+        <div class="flex flex-wrap ">
+            <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0 ">
+                <div class="lg:max-w-md">
+                    <div class="px-4 pl-4 mb-6 border-l-4 border-blue-500">
+                        <span class="text-sm text-gray-600 uppercase dark:text-gray-400">Firma</span>
+                        <h1 class="mt-2 text-3xl font-black text-gray-700 md:text-5xl dark:text-gray-300">
+                            Firma
+                        </h1>
+                    </div>
+                    <p class="px-4 mb-10 text-base leading-7 text-gray-500 dark:text-gray-400">
+                      P&S Fahrzeugtechnik GbR wurde am 15.07.2013 gegründet. Zu Beginn bestand das Unternehmen nur aus den beiden Geschäftsführern Sören Schwarz und Marius Paszek. In den vergangenen Jahren wuchs das Team auf mittlerweile 20 Mitarbeitende. Durch stetige Weiterbildung und modernste Technik bietet der Kfz-Meisterbetrieb einen umfassenden Service für alle gängigen Kfz-Marken. Überzeugen Sie sich von unserer Qualität und kontaktieren Sie uns. 
+                    </p>
+                    <div class="flex flex-wrap items-center">
+                        <div class="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
+                            <div class="p-6 bg-white dark:bg-gray-900">
+                                <span class="text-blue-500 dark:text-blue-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="w-10 h-10"
+                                        fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                                        <path
+                                            d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                    </svg>
+                                </span>
+                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">11
+                                </p>
+                                <h2 class="text-sm text-gray-700 dark:text-gray-400">Jahre Erfahrung</h2>
+                            </div>
+                        </div>
+                        <div class="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
+                            <div class="p-6 bg-white dark:bg-gray-900">
+                                <span class="text-blue-500 dark:text-blue-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="w-10 h-10"
+                                        fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                        <path fill-rule="evenodd"
+                                            d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                                        <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                </span>
+                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">3,590
+                                </p>
+                                <h2 class="text-sm text-gray-700 dark:text-gray-400">Helped people</h2>
+                            </div>
+                        </div>
+                        <div class="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
+                            <div class="p-6 bg-white dark:bg-gray-900">
+                                <span class="text-blue-500 dark:text-blue-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="w-10 h-10"
+                                        fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                </span>
+                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">20
+                                </p>
+                                <h2 class="text-sm text-gray-700 dark:text-gray-400">Mitarbeiter</h2>
+                            </div>
+                        </div>
+                        <div class="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
+                            <div class="p-6 bg-white dark:bg-gray-900">
+                                <span class="text-blue-500 dark:text-blue-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="w-10 h-10"
+                                        fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
+                                    </svg>
+                                </span>
+                                <p class="mt-4 mb-2 text-3xl font-bold text-gray-700 dark:text-gray-400">100%
+                                </p>
+                                <h2 class="text-sm text-gray-700 dark:text-gray-400">Zuverlässig</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
+                <img src="./assets/FirmaVorderseite.jpeg" alt=""
+                    class="relative z-40 object-cover w-full h-full rounded">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Über Firma -->
+
+
+<!-- Google Maps -->
+<iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Gewerbegebiet%20Br%C3%A4unleinsberg-See%C3%A4ckerstra%C3%9Fe,%20Br%C3%A4unleinsberg%204%20Ottensoos+(P&amp;S%20Fahrzeugtechnik)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+<!-- Google Maps -->
+
+
+  <!-- Über uns -->
+  <section class="flex items-center bg-stone-100 font-poppins dark:bg-gray-800 py-20">
+    <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+        <div class="flex flex-wrap ">
+            <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
+                <div class="relative lg:max-w-md">
+                    <img src="https://i.postimg.cc/rF0MKfBV/pexels-andrea-piacquadio-3760263.jpg" alt="aboutimage"
+                        class="relative z-10 object-cover w-full rounded h-96">
+                    <div
+                        class="absolute bottom-0 right-0 z-10 p-8 bg-white border-4 border-ps-blue rounded shadow dark:border-sky-400 lg:-mb-8 lg:-mr-11 sm:p-8 dark:text-gray-300 dark:bg-gray-800 ">
+                        <p class="text-lg font-semibold md:w-72">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                class="absolute top-0 left-0 w-16 h-16 text-sky-700 dark:text-gray-300 opacity-10"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z">
+                                </path>
+                            </svg> KFZ-Meister
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-6 mb-10 lg:w-1/2 lg:mb-0 ">
+                <div class="pl-4 mb-6 border-l-4 border-ps-blue ">
+                    <!-- <span class="text-sm text-gray-600 uppercase dark:text-gray-400">Who we are?</span> -->
+                    <h1 class="mt-2 text-3xl font-black text-gray-700 md:text-5xl dark:text-gray-300">
+                        Marius Paszek
+                    </h1>
+                </div>
+                <p class="lg:mb-6 text-base leading-7 text-gray-500 dark:text-gray-400">
+                  Marius Paszek ist seit  31. März 2022 
+                  Meister der Kraftfahrzeugtechnik.
+                  Nach seiner Ausbildung und langjährigen Anstellung als Mechaniker bei Mercedes erlernte er verschiedene Kenntnisse, die in unserer Werkstatt täglich einen Mehrwert bieten. Er ist hauptsächlich für die Diagnose, Fahrzeugelektrik und Kundenbetreuung zuständig.
+                </p>
+                <!-- <a href="#"
+                    class="px-4 py-2 text-gray-100 bg-sky-500 rounded dark:bg-sky-400 dark:hover:bg-sky-500 hover:bg-sky-600">
+                    Learn more
+                </a> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="flex items-center bg-stone-100 font-poppins dark:bg-gray-800 lg:py-20">
+  <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+      <div class="flex flex-wrap ">
+          <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
+              <div class="relative lg:max-w-md">
+                  <img src="https://i.postimg.cc/rF0MKfBV/pexels-andrea-piacquadio-3760263.jpg" alt="aboutimage"
+                      class="relative z-10 object-cover w-full rounded h-96">
+                  <div
+                      class="absolute bottom-0 right-0 z-10 p-8 bg-white border-4 border-ps-blue rounded shadow dark:border-sky-400 lg:-mb-8 lg:-mr-11 sm:p-8 dark:text-gray-300 dark:bg-gray-800 ">
+                      <p class="text-lg font-semibold md:w-72">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                              class="absolute top-0 left-0 w-16 h-16 text-sky-700 dark:text-gray-300 opacity-10"
+                              viewBox="0 0 16 16">
+                              <path
+                                  d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z">
+                              </path>
+                          </svg> KFZ-Meister
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div class="w-full px-6 mb-10 lg:w-1/2 lg:mb-0 ">
+              <div class="pl-4 mb-6 border-l-4 border-ps-blue ">
+                  <!-- <span class="text-sm text-gray-600 uppercase dark:text-gray-400">Who we are?</span> -->
+                  <h1 class="mt-2 text-3xl font-black text-gray-700 md:text-5xl dark:text-gray-300">
+                      Sören Schwarz
+                  </h1>
+              </div>
+              <p class="mb-6 text-base leading-7 text-gray-500 dark:text-gray-400">
+                Sören Schwarz ist seit 20. September 2007
+                Meister der Kraftfahrzeugtechnik. 
+                Durch seine Tätigkeiten in verschiedenen Bereichen der Kfz-Branche, konnte er viele Erfahrungen sammeln die unserem Betrieb alltäglich benötigt werden. Er ist vorrangig für die Unfallinstandsetzung, Versicherungsabwicklung und  Kundenbetreuung zuständig. 
+              </p>
+              <!-- <a href="#"
+                  class="px-4 py-2 text-gray-100 bg-sky-500 rounded dark:bg-sky-400 dark:hover:bg-sky-500 hover:bg-sky-600">
+                  Learn more
+              </a> -->
+          </div>
+      </div>
+  </div>
+</section>
+  <!-- Über uns -->
+
+
+
+  <!-- Dienstleistungen -->
+  <div class="bg-ps-blue flex flex-row flex-wrap py-10">
+    <div class="justify-center flex-1 max-w-6xl xl:max-w-7xl md:mx-8 lg:mx-auto mx-6 py-4 lg:py-6 md:px-6">
+      <div class="pl-4 mb-12 border-l-4 border-gray-300 ">
+        <span class="text-sm text-gray-300 uppercase dark:text-gray-400">Was wir für sie tun</span>
+        <h1 class="mt-2 text-3xl font-black text-gray-100 md:text-5xl dark:text-gray-300">
+            Leistungen
+        </h1>
+    </div>
+      <div class="flex flex-wrap justify-center md:justify-around lg:justify-between gap-6">
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Reparatur und Inspektion</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Karosserie und Unfallinstandsetzung</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Autoglas-Service</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Abrechnung & Abwicklung mit ihrer Versicherung</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        </div>
+        
+
+        <div x-data="{ open : false }" class="mt-14">
+          <section class="text-center">
+          <button @click="open = !open" class="bg-gray-100 py-2 px-6 rounded-md mb-4">Mehr anzeigen</button>
+        </section>
+
+        <div x-show="open" class="flex flex-wrap justify-center md:justify-around lg:justify-between gap-6">
+
+
+
+          <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+            <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+            <h2 class="text-center text-2xl mt-4">Reifen-Service und Reifeneinlagerung</h2>
+            <section class="text-center mt-12">
+              <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+            </section>
+          </div>
+  
+
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Fahrzeugdiagnose / Fahrzeug-Elektronik</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Bremsen-Service</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Klima-Service</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Achsvermessung</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">UVV Prüfung</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Hauptuntersuchung & Abgasuntersuchung</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Werkstattersatzwagen</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+        <div id="service" class="bg-gray-100 px-4 text-gray-900 scale-100 h-96 justify-center flex flex-col w-72 rounded-lg z-20 object-center transform transition-all duration-500 ease-out">
+          <img src="./assets/icons8-leute-im-auto-100.png" alt="car icon" class="mx-auto mt-7">
+          <h2 class="text-center text-2xl mt-4">Hol- & Bringservice</h2>
+          <section class="text-center mt-12">
+            <button class="py-3 px-10 border rounded-lg hover:bg-white hover:text-ps-blue">Termin!</button>
+          </section>
+        </div>
+
+      </div>
+    <!-- </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Dienstleistungen -->
+
+<!-- Kontakt -->
+
+<div class="bg-stone-100 w-screen flex flex-col py-10">
+  <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+    <div class="pl-4 border-l-4 border-ps-blue mb-10">
+      <span class="text-sm text-gray-600 uppercase dark:text-gray-400">So erreichen Sie uns</span>
+      <h1 class="mt-2 text-3xl font-black text-gray-700 md:text-5xl dark:text-gray-300">
+          Kontakt
+      </h1>
+  </div>
+    <div class="flex flex-col md:flex-row gap-20">
+    <div>
+    <p class="font-semibold mb-1 text-xl">Telefonnummer</p>
+    <p class="mb-4">09123 981651</p>
+    <p class="font-semibold mb-1 text-xl">Email</p>
+    <p class="mb-4">info@psfahrzeugtechnik.de</p>
+    <p class="font-semibold mb-1 text-xl">Vor Ort</p>
+    <p>Gewerbegebiet Bräunleinsberg-Seeäckerstraße</p>
+    <p>Bräunleinsberg 4</p>
+    <p>91242 Ottensoos-Bräunleinsberg</p>
+  </div>
+  <div>
+    <p class="font-semibold mb-1 text-xl">Öffnungszeiten</p>
+    <section class="leading-8">
+    <p>Montag 08:00-18:00</p>
+    <p>Dienstag 08:00-18:00</p>
+    <p>Mittwoch 08:00-18:00</p>
+    <p>Donnerstag 08:00-18:00</p>
+    <p>Freitag 08:00-18:00</p>
+    <p>Samstag <span class="font-semibold">Geschlossen</span></p>
+    <p>Sonntag <span class="font-semibold">Geschlossen</span></p>
+  </section>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Kontakt -->
+
+
+<!-- Footer -->
+
+
+<footer class="bg-ps-blue shadow py-6 dark:bg-gray-800">
+  <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <span class="text-sm text-gray-100 sm:text-center dark:text-gray-400">© 2024 <a href="https://flowbite.com/" class="hover:underline">P&S Fahrzeugtechnik</a>. All Rights Reserved.
+  </span>
+  <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-100 dark:text-gray-400 sm:mt-0">
+      <li>
+          <a href="#" class="hover:underline me-4 md:me-6">Start</a>
+      </li>
+      <li>
+          <a href="#" class="hover:underline me-4 md:me-6">Impressum</a>
+      </li>
+      <li>
+          <a href="#" class="hover:underline me-4 md:me-6">AGBs</a>
+      </li>
+      <li>
+          <a href="#" class="hover:underline">Kontakt</a>
+      </li>
+  </ul>
+  </div>
+</footer>
+
+<!-- Footer -->
+
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
